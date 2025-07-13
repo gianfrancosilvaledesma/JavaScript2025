@@ -1,0 +1,252 @@
+.cervezas {
+  list-style: none;
+  text-decoration: none;
+}
+
+.cerveza-padre, .tabla {
+  color: goldenrod;
+  text-decoration: none;
+}
+
+main {
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  text-decoration: underline;
+}
+
+h2 {
+  text-align: center;
+  padding: 10px;
+  border: 8px solid rgba(26, 65, 0, 0.76);
+}
+
+h3 {
+  text-align: center;
+  font-family: cursive;
+  text-decoration: underline double;
+}
+
+h4 {
+  background-color: blueviolet;
+  color: brown;
+}
+
+h5 {
+  background-color: blueviolet;
+}
+
+header {
+  color: goldenrod;
+  font-style: initial;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+#mapa {
+  border-radius: 10%;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@keyframes animation1 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+footer {
+  text-align: right;
+  font-size: xx-large;
+}
+
+.logo {
+  display: flex;
+  justify-content: center; /* horizontal */
+  align-items: center; /* vertical */
+  width: 25% !important;
+  position: sticky;
+  border-radius: 50%;
+}
+
+.logo2 {
+  position: fixed;
+  bottom: 80px;
+  right: 10px;
+}
+
+.cerveza-padre {
+  display: grid;
+  text-align: center;
+  gap: 25px;
+  list-style-type: none;
+}
+
+.tabla {
+  text-decoration: wavy;
+}
+
+.cervezas {
+  color: darkgoldenrod;
+  text-decoration: solid;
+  border: 8px solid rgba(169, 224, 15, 0.76);
+  font-size: xx-large;
+}
+
+.form-control {
+  background-color: goldenrod;
+}
+
+#registroForm {
+  display: grid;
+  color: darkgoldenrod;
+  text-decoration-line: underline;
+  text-align: justify;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: large;
+  font-style: oblique;
+}
+
+.formulario1 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.box {
+  background-color: red;
+  height: 150px;
+  width: 150px;
+  border: 8px solid palevioletred;
+  margin: 30px;
+  padding: 60px;
+}
+.box p {
+  text-align: center;
+}
+
+.boton {
+  size-adjust: 50%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+@media (min-width: 300px) {
+  body {
+    background-color: green;
+    font-size: 18px;
+    padding: 20px;
+  }
+  h2 {
+    font-size: medium;
+  }
+  .cervezas {
+    font-size: medium;
+  }
+  .logo {
+    position: relative;
+    left: 180px;
+    align-content: center;
+    border-radius: 50%;
+    width: 200px;
+    height: auto;
+  }
+  #mapa {
+    border-radius: 10%;
+    width: 80%;
+  }
+  .video {
+    width: 70%;
+    border: 4px solid gold;
+  }
+}
+@media (min-width: 600px) {
+  body {
+    background-color: blue;
+    font-size: 20px;
+    padding: 30px;
+  }
+  h2 {
+    font-size: large;
+  }
+  .cervezas {
+    font-size: x-large;
+  }
+  .logo {
+    position: relative;
+    left: 200px;
+    border-radius: 50%;
+    width: 400px;
+    height: auto;
+  }
+  #mapa {
+    border-radius: 10%;
+    width: 80%;
+  }
+  .video {
+    width: 70%;
+    border: 4px solid gold;
+  }
+}
+@media (min-width: 900px) {
+  body {
+    background-color: brown;
+    font-size: 30px;
+    padding: 30px;
+  }
+  h2 {
+    font-size: x-large;
+  }
+  .cervezas {
+    font-size: xx-large;
+  }
+  .logo {
+    position: relative;
+    left: 480px;
+    border-radius: 50%;
+    width: 600px;
+    height: auto;
+  }
+  #mapa {
+    border-radius: 10%;
+    width: 80%;
+  }
+  .video {
+    width: 70%;
+    border: 4px solid gold;
+  }
+}
+#prodCervezas {
+color: yellow;
+border: 15px solid goldenrod;
+}
+#total{
+  color: darkorange;
+  box-shadow: inset;
+}
+#compraCarrito{
+  color: rgb(1, 39, 9);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+#compraFinalizada{
+  color: coral;
+}
+/*# sourceMappingURL=style1.css.map */
