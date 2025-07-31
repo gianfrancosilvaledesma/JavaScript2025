@@ -38,6 +38,9 @@ const guardarCarrito = ()=>{
   localStorage.setItem("carrito", carritoJSON)
 }
 
+//const carritoComprado = JSON.parse(localStorage.getItem('carrito')) || [];
+
+
 
 const mostrarCarrito = ()=>{
   compraCarrito.innerHTML = ""
@@ -82,8 +85,20 @@ function mostrarProd(){
     btn.innerText = "Comprar"
     btn.addEventListener("click",()=>{
       agregarCarrito(prod)
+      Toastify({
+         text: `Agregado ${prod.nombre} al carrito`,
+        duration: 3000,
+        newWindow: true,
+         close: true,
+        gravity: "bottom",
+        position: "right",
+        stopOnFocus: false,
+        style: {
+          background: "linear-gradient(to right, green, gold)",
+        }
+      }).showToast();
     })
-
+ 
     // agregar al DOM
     li.appendChild(div)
     li.appendChild(btn)
@@ -91,13 +106,16 @@ function mostrarProd(){
   })
 }
 
-const comprar =(nombre)=>{
+const comprar = async()=>{
   const agradecimiento = document.getElementById("compraFinalizada")
-  agradecimiento.innerText = `gracias por su compra, Vuelva pronto`
+agradecimiento.innerText = "Procesando su compra en el sistema...";
+await new Promise (resolve => setTimeout(resolve,5000));
+const carritoComprado = JSON.parse(localStorage.getItem('carrito')) || [];
+  agradecimiento.innerText = `Gracias por su compra, Vuelva pronto, usted compro: ${carritoComprado.map(prod => prod.nombre)}`
   carritoVacio()
 }
 
- botonCompra.onclick = comprar
+ botonCompra.onclick = comprar;
 
 function inicializar(){
   mostrarProd()
