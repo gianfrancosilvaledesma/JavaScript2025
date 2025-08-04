@@ -1,4 +1,16 @@
+//const url = `https://api.openbrewerydb.org/v1/breweries?by_country=France`;
+
+//const info= ()=>{
+ // fetch(url)
+//.then(response => response.json())
+//.then(data => {
+  //console.log(JSON.stringify(data));
+//})
+//.catch(error =>{
+  //alert("Esta api dio error", error)
+//})}
 // variables
+
 
 const cervezas = [ 
   {nombre:"Rubia" , precio:50, id: 101},
@@ -15,6 +27,7 @@ const prodCervezas = document.getElementById("prodCervezas")
 const compraCarrito = document.getElementById("compraCarrito")
 const vaciarCarrito = document.getElementById("vaciarCarrito")
 const botonCompra = document.getElementById("btnCompra")
+const botonInfo = document.getElementById("btnInfo")
 
 // funciones
 
@@ -38,10 +51,6 @@ const guardarCarrito = ()=>{
   localStorage.setItem("carrito", carritoJSON)
 }
 
-//const carritoComprado = JSON.parse(localStorage.getItem('carrito')) || [];
-
-
-
 const mostrarCarrito = ()=>{
   compraCarrito.innerHTML = ""
   carrito.forEach(prod=>{
@@ -50,6 +59,22 @@ const mostrarCarrito = ()=>{
     compraCarrito.appendChild(li)
   })
 }
+//Boton que te da info de cervezas de francia, utilizando una api
+const url = `https://api.openbrewerydb.org/v1/breweries?by_country=France`;
+
+const info= ()=>{
+  fetch(url)
+.then(response => response.json())
+.then(data => {
+  console.log(JSON.stringify(data));
+})
+.catch(error =>{
+  alert("Esta api dio error", error)
+})}
+botonInfo.innerText="Info Francia"
+botonInfo.addEventListener("click",info)
+
+
 //Boton para vaciar el carrito
 vaciarCarrito.innerHTML = `<div><button id="btn-vaciar">Vaciar Carrito</button> </div>`
 document.getElementById("btn-vaciar").addEventListener("click", carritoVacio);
