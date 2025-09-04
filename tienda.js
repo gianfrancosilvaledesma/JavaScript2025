@@ -186,7 +186,7 @@ const comprar = async()=>{
 agradecimiento.innerText = "Procesando su compra en el sistema...";
 await new Promise (resolve => setTimeout(resolve,5000));
 const carritoComprado = JSON.parse(localStorage.getItem('carrito')) || [];
-  agradecimiento.innerText = `Gracias por su compra, Vuelva pronto, usted compro: ${carritoComprado.map(prod => prod.nombre)}`
+  agradecimiento.innerText = `Gracias por su compra, usted selecciono: ${carritoComprado.map(prod => prod.nombre)}, proceda al checkout por favor.`
   botonCheckout.disabled = false
 }
 

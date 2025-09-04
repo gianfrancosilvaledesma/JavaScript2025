@@ -24,10 +24,10 @@ form.addEventListener("submit", (e)=>{
   e.preventDefault()
   
   const nombre = document.getElementById("nombre").value
-//   const email = document.getElementById("email").value
+  const pago = document.getElementById("pago").value
 //   const direccion = document.getElementById("direccion").value
 
-  mensajeFinal.innerText = `✅ Gracias ${nombre}! Tu compra fue realizada con éxito.`
+  mensajeFinal.innerText = `✅ Gracias ${nombre}! pagaste con ${pago} Tu compra fue realizada con éxito.`
 
   // Vaciar carrito
   localStorage.removeItem("carrito")
