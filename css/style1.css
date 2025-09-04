@@ -8,6 +8,12 @@
   text-decoration: none;
 }
 
+#listaCervecerias {
+background-color: fuchsia;
+border-color: green;
+text-decoration: wavy;
+}
+
 main {
   align-items: center;
 }
@@ -79,6 +85,26 @@ footer {
   position: fixed;
   bottom: 80px;
   right: 10px;
+}
+
+.btn-mas {
+  background-color:black;
+  color: white;
+  border-radius: 8px;
+  padding: 5px 15px;
+  margin: 0 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-menos {
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  padding: 5px 18px;
+  margin: 0 20px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .cerveza-padre {

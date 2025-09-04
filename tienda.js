@@ -1,15 +1,3 @@
-//const url = `https://api.openbrewerydb.org/v1/breweries?by_country=France`;
-
-//const info= ()=>{
- // fetch(url)
-//.then(response => response.json())
-//.then(data => {
-  //console.log(JSON.stringify(data));
-//})
-//.catch(error =>{
-  //alert("Esta api dio error", error)
-//})}
-// variables
 
 
 const cervezas = [ 
@@ -20,7 +8,8 @@ const cervezas = [
 ]
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || []
-
+//Para ver lo que tiene el carrito en el storage
+console.log("Carrito cargado del storage:", carrito)
 // variables DOM
 
 const prodCervezas = document.getElementById("prodCervezas")
@@ -28,6 +17,7 @@ const compraCarrito = document.getElementById("compraCarrito")
 const vaciarCarrito = document.getElementById("vaciarCarrito")
 const botonCompra = document.getElementById("btnCompra")
 const botonInfo = document.getElementById("btnInfo")
+const botonCheckout= document.getElementById("btnCheckout")
 
 // funciones
 
@@ -59,20 +49,45 @@ const mostrarCarrito = ()=>{
     compraCarrito.appendChild(li)
   })
 }
-//Boton que te da info de cervezas de francia, utilizando una api
-const url = `https://api.openbrewerydb.org/v1/breweries?by_country=France`;
+//boton que se conecta a una api y nos da info sobre cervecerias
+const url = `https://api.openbrewerydb.org/v1/breweries?per_page=5`;
+const listaCervecerias = document.getElementById("listaCervecerias")
 
-const info= ()=>{
+const info = () => {
   fetch(url)
-.then(response => response.json())
-.then(data => {
-  console.log(JSON.stringify(data));
-})
-.catch(error =>{
-  alert("Esta api dio error", error)
-})}
-botonInfo.innerText="Info Francia"
-botonInfo.addEventListener("click",info)
+      .then(response => {
+        return response.json()
+     })
+    .then(data => {
+      listaCervecerias.innerHTML = "" // limpiar antes
+      data.forEach(c => {
+        const li = document.createElement("li")
+        li.innerHTML = `
+          <strong>${c.name}</strong> (${c.brewery_type}) <br>
+          ${c.city}, ${c.country} 
+        `
+        listaCervecerias.appendChild(li)
+      })
+    })
+    .catch(error => {
+      console.error("Error en la API:", error)
+      alert("No se pudieron cargar los datos de la API.")
+    })
+}
+botonInfo.innerText="Mostrar Cervecerias Especiales"
+document.getElementById("btnInfo").addEventListener("click", info)
+
+// const info= ()=>{
+//   fetch(url)
+// .then(response => response.json())
+// .then(data => {
+//   console.log((data));
+// })
+// .catch(error =>{
+//   alert("Esta api dio error", error)
+// })}
+// botonInfo.innerText="Info Francia"
+// botonInfo.addEventListener("click",info)
 
 
 //Boton para vaciar el carrito
@@ -93,6 +108,17 @@ const agregarCarrito = (prod)=>{
   guardarCarrito()
 }
 
+const quitarDelCarrito = (prod)=>{
+  const index = carrito.findIndex(item => item.id === prod.id);
+  if (index !== -1) {
+    carrito.splice(index, 1); // quita 1 elemento en esa posición
+    }
+  mostrarCarrito()
+  mostrarTotal()
+  guardarCarrito()
+}
+
+
 
 
 function mostrarProd(){
@@ -102,31 +128,55 @@ function mostrarProd(){
     const li = document.createElement("li")
     const div = document.createElement("div")
     const btn = document.createElement("button")
+    const btn2= document.createElement("button")
+    //const letra= document.createElement("p")
 
 
     // Modificar
     li.id = prod.id
     div.innerText = `${prod.nombre} - $${prod.precio}`
-    btn.innerText = "Comprar"
+    btn.innerText = "+";
+    //letra.innerText = "o"
+    btn2.innerText = "-";
+
+       btn.classList.add("btn-mas")
+    btn2.classList.add("btn-menos")
+
     btn.addEventListener("click",()=>{
       agregarCarrito(prod)
       Toastify({
          text: `Agregado ${prod.nombre} al carrito`,
         duration: 3000,
         newWindow: true,
-         close: true,
+         close: false,
         gravity: "bottom",
         position: "right",
         stopOnFocus: false,
         style: {
-          background: "linear-gradient(to right, green, gold)",
+          background: "linear-gradient(to left, tomato, gold)",
         }
       }).showToast();
     })
+
+     btn2.addEventListener("click", () => {
+      quitarDelCarrito(prod); // deberías definir esta función
+      Toastify({
+        text: `Quitado ${prod.nombre} del carrito`,
+        duration: 3000,
+        close: false,
+        gravity: "bottom",
+        position: "right",
+        style: {
+          background: "linear-gradient(to right, red, gray)",
+        }
+      }).showToast();
+    });
  
     // agregar al DOM
     li.appendChild(div)
     li.appendChild(btn)
+    //li.appendChild(letra)
+    li.appendChild(btn2)
     prodCervezas.appendChild(li)
   })
 }
@@ -140,13 +190,26 @@ const carritoComprado = JSON.parse(localStorage.getItem('carrito')) || [];
   carritoVacio()
 }
 
- botonCompra.onclick = comprar;
+ botonCompra.addEventListener("click",()=>{
+ if(carrito.length === 0){
+  alert("Elije algun producto");
+}
+else 
+  onclick = comprar;
+})
+
+botonCheckout.addEventListener("click", ()=>{
+  if (carrito.length === 0){
+  alert("Elije algun producto");
+}
+else
+  window.location.href = "checkout.html"
+  })
 
 function inicializar(){
   mostrarProd()
   mostrarCarrito()
   mostrarTotal()
-  carritoVacio()
 }
 
 // Ejecución de código
