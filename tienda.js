@@ -187,7 +187,7 @@ agradecimiento.innerText = "Procesando su compra en el sistema...";
 await new Promise (resolve => setTimeout(resolve,5000));
 const carritoComprado = JSON.parse(localStorage.getItem('carrito')) || [];
   agradecimiento.innerText = `Gracias por su compra, Vuelva pronto, usted compro: ${carritoComprado.map(prod => prod.nombre)}`
-  carritoVacio()
+  botonCheckout.disabled = false
 }
 
  botonCompra.addEventListener("click",()=>{
@@ -195,14 +195,10 @@ const carritoComprado = JSON.parse(localStorage.getItem('carrito')) || [];
   alert("Elije algun producto");
 }
 else 
-  onclick = comprar;
+  comprar();
 })
 
 botonCheckout.addEventListener("click", ()=>{
-  if (carrito.length === 0){
-  alert("Elije algun producto");
-}
-else
   window.location.href = "checkout.html"
   })
 
