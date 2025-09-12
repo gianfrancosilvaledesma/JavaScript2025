@@ -1,0 +1,21 @@
+.texto{
+    color: red;
+}
+header{
+    display: flex;
+}
+h1{
+    display:grid;
+    align-items:first baseline;
+    justify-content: space-between;
+    border-bottom: 4px solid rgb(116, 4, 4);
+border-radius: 4px;
+}
+
+li{
+    display: inline-block;
+    align-items:last baseline;
+    justify-content: flex-end;
+    margin: 10px;
+    cursor: pointer;
+}
